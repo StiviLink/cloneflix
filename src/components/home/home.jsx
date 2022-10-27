@@ -2,6 +2,7 @@ import { movieData, tvData, genreData } from "../../services";
 import { Outlet } from "react-router-dom"
 import Header from "../header/header"
 import {useDispatch, useSelector} from "react-redux"
+import {useEffect} from "react";
 import allActions from "../../actions";
 const elementsHeader = [
     {
@@ -20,9 +21,9 @@ const elementsHeader = [
         url : "/films"
     },
     {
-        id : "liste",
-        value : "Ma liste",
-        url : "/liste"
+        id : "favoris",
+        value : "Mes favoris",
+        url : "/favoris"
     }
 ]
 
@@ -47,6 +48,7 @@ const Home = () => {
     console.log(tvs)
     console.log(genres)
     chargement().then()
+
 
     return (
         <>
