@@ -46,3 +46,22 @@
   z-index: 3
   opacity: 1
   box-shadow: rgb(0 0 0 / 75%) 0 3px 10px
+
+.previewModal--wrapper
+  box-sizing: border-box
+  display: flex
+  justify-content: center
+  left: 0
+  position: absolute
+  top: 0
+  will-change: scroll-position
+
+.previewModal--wrapper *, .previewModal--wrapper :after, .previewModal--wrapper :before {
+  box-sizing: inherit;
+}
+
+.previewModal--player_container {
+  background-color: #000;
+  cursor: pointer;
+  position: relative;
+}

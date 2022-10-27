@@ -55,8 +55,7 @@ const Liste = (props) => {
                         <div className="focus-trap-wrapper previewModal--wrapper mini-modal has-smaller-buttons"
                              tabIndex="-1">
                             <div role="dialog" aria-modal="true" tabIndex="-1"
-                                 className="previewModal--container mini-modal has-smaller-buttons"
-                                 data-uia="preview-modal-container-MINI_MODAL">
+                                 className="previewModal--container mini-modal has-smaller-buttons">
 
                             </div>
                         </div>

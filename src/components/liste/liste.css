@@ -55,4 +55,14 @@
   box-shadow: rgba(0, 0, 0, 0.75) 0 3px 10px;
 }
 
+.previewModal--wrapper {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  will-change: scroll-position;
+}
+
 /*# sourceMappingURL=liste.css.map */
