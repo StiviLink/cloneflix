@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import {useParams} from "react-router-dom";
 
 const Info = () => {
+    const favoris = useSelector(state => state.favoriReducer)
     const {id, type} = useParams()
     const list = type==="movie" ? useSelector(state => state.movieReducer)
         : useSelector(state => state.tvReducer)
@@ -13,7 +14,7 @@ const Info = () => {
     return (
         <>
             <div className="main-content is-full-bleed">
-                <Liste element={element} type="info"/>
+                <Liste element={element} favoris={favoris} type="info"/>
             </div>
         </>
     )

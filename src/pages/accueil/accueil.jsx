@@ -7,6 +7,7 @@ const Accueil = () => {
     const movies = useSelector(state => state.movieReducer)
     const tvs = useSelector(state => state.tvReducer)
     const genres = useSelector(state => state.genreReducer)
+    const favoris = useSelector(state => state.favoriReducer)
     const listes = constants.allLists(movies, tvs, genres)
 
     console.log(listes)
@@ -15,7 +16,7 @@ const Accueil = () => {
         <>
             {listes.map(liste => (
                 <div className="main-content is-full-bleed">
-                    <Liste elements={liste.elements} genre={liste.genre} type="all"/>
+                    <Liste elements={liste.elements} genre={liste.genre} favoris={favoris} type="all"/>
                 </div>
             ))}
         </>

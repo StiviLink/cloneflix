@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom"
 import Accueil from "./pages/accueil/accueil";
 import Series from "./pages/serie/serie";
 import Films from "./pages/film/film";
-import Home from "./components/home/home";
+import Home from "./pages/home/home";
 import Genre from "./pages/genre/genre";
 import Favori from "./pages/favori/favori";
 import Info from "./pages/info/info";

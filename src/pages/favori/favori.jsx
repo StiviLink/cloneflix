@@ -7,7 +7,7 @@ const Favori = () => {
     return (
         <>
             <div className="main-content is-full-bleed">
-                <Liste elements={favoris} type="favoris"/>
+                <Liste elements={favoris} favoris={favoris} type="favoris"/>
             </div>
         </>
     )

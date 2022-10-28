@@ -1,8 +1,7 @@
 import { movieData, tvData, genreData } from "../../services";
 import { Outlet } from "react-router-dom"
-import Header from "../header/header"
+import Header from "../../components/header/header"
 import {useDispatch, useSelector} from "react-redux"
-import {useEffect} from "react";
 import allActions from "../../actions";
 const elementsHeader = [
     {
@@ -32,6 +31,7 @@ const Home = () => {
     const movies = useSelector(state => state.movieReducer)
     const tvs = useSelector(state => state.tvReducer)
     const genres = useSelector(state => state.genreReducer)
+    const favoris = useSelector(state => state.favoriReducer)
     const dispatch = useDispatch()
     const chargement = async () => {
         const dataMovie = await movieData.getAll()
@@ -43,11 +43,12 @@ const Home = () => {
             dataTv.map(x => dispatch(allActions.tvAction.addTv(x)))
         if(!genres.movie || !genres.tv)
             dispatch(allActions.genreAction.addGenre(dataGenre))
+        for(let i=0; i<localStorage.length; i++){
+            dispatch(allActions.favoriAction.addFavori(JSON.parse(localStorage.getItem(localStorage.key(i)))))
+        }
     }
-    console.log(movies)
-    console.log(tvs)
-    console.log(genres)
     chargement().then()
+    console.log(favoris)
 
 
     return (

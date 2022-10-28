@@ -3,20 +3,20 @@ import "react-multi-carousel/lib/styles.css"
 import {NavLink, useNavigate} from "react-router-dom"
 import Carousel from "react-multi-carousel";
 import {useState} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 import allActions from "../../actions";
 
 const Liste = (props) => {
     const navigate = new useNavigate()
     const dispatch = useDispatch()
-    const favoris = useSelector(state => state.favoriReducer)
-    console.log(props.element)
     const addFavori = e => {
         e.preventDefault()
+        localStorage.setItem(`${selection.id}`, JSON.stringify(selection))
         dispatch(allActions.favoriAction.addFavori(selection))
     }
     const delFavori = e => {
         e.preventDefault()
+        localStorage.removeItem(`${selection.id}`)
         dispatch(allActions.favoriAction.delFavori(selection))
     }
     const responsive = {
@@ -73,7 +73,7 @@ const Liste = (props) => {
         setDisplay("Block")
     }
     const allButtons = elt => <div className="allButtons">
-            {!(favoris[0] && favoris.find(x => x.id===elt.id)) ? (
+            {!(props.favoris[0] && props.favoris.find(x => x.id===elt.id)) ? (
                 <button aria-label="Ajouter à Ma liste"
                         className="button-favori" type="button" onClick={addFavori}>
                     <div>
@@ -165,6 +165,7 @@ const Liste = (props) => {
             {footer}
         </> : foot}
     </div>
+
     return (
         <>
             {

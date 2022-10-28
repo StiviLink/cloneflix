@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import {Constants} from "../../constants/constants";
 
 const Series = () => {
+    const favoris = useSelector(state => state.favoriReducer)
     const constant = new Constants()
     const tvs = useSelector(state => state.tvReducer)
     const genres = useSelector(state => state.genreReducer)
@@ -16,7 +17,7 @@ const Series = () => {
         <>
             {listes.map(liste => (
                 <div className="main-content is-full-bleed">
-                    <Liste elements={liste.elements} genre={liste.genre} type="all"/>
+                    <Liste elements={liste.elements} genre={liste.genre} favoris={favoris} type="all"/>
                 </div>
             ))}
         </>
