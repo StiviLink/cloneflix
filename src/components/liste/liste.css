@@ -109,4 +109,23 @@
   cursor: pointer;
 }
 
+.box-image-info {
+  width: 60%;
+  margin-left: 20%;
+  margin-top: -3%;
+  height: 70vh;
+  border: 2px solid white;
+}
+
+.info-container {
+  font-size: 2em;
+  margin: 3%;
+}
+.info-container div {
+  margin: 1%;
+}
+.info-container div span {
+  color: #adafbc;
+}
+
 /*# sourceMappingURL=liste.css.map */

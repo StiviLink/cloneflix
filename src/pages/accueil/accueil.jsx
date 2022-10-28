@@ -1,16 +1,15 @@
-import Liste from "../liste/liste";
+import Liste from "../../components/liste/liste";
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
 import {Constants} from "../../constants/constants";
 
-const Series = () => {
-    const constant = new Constants()
+const Accueil = () => {
+    const constants = new Constants()
+    const movies = useSelector(state => state.movieReducer)
     const tvs = useSelector(state => state.tvReducer)
     const genres = useSelector(state => state.genreReducer)
-    const navigate = new useNavigate()
-    if(!tvs[0])
-        navigate('/accueil')
-    const listes = constant.listTvs(genres, tvs)
+    const listes = constants.allLists(movies, tvs, genres)
+
+    console.log(listes)
 
     return (
         <>
@@ -23,4 +22,4 @@ const Series = () => {
     )
 }
 
-export default Series
+export default Accueil

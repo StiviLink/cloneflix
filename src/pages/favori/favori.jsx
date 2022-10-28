@@ -1,10 +1,8 @@
-import Liste from "../liste/liste";
+import Liste from "../../components/liste/liste";
 import { useSelector } from "react-redux"
 
 const Favori = () => {
     const favoris = useSelector(state => state.favoriReducer)
-
-    console.log(favoris)
 
     return (
         <>

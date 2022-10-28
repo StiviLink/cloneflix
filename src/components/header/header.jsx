@@ -1,7 +1,10 @@
 import './header.css'
 import {NavLink} from "react-router-dom"
+import {useState} from "react";
 
 const Header = (props) => {
+    const [selected, setSelected] = useState(0)
+
 
     return (
         <>
@@ -16,7 +19,8 @@ const Header = (props) => {
                                     <ul className="primary-navigation">
                                         {props.elements.map(element => (
                                             <li key={element.id} className="navigation-tab">
-                                                <NavLink to={`${element.url}`}>
+                                                <NavLink to={`${element.url}`} className={element.id===selected ?
+                                                    "current-active" : ""} onClick={() => setSelected(element.id)}>
                                                     {element.value ? (
                                                         <>
                                                             {element.value}

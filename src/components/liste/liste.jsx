@@ -10,7 +10,7 @@ const Liste = (props) => {
     const navigate = new useNavigate()
     const dispatch = useDispatch()
     const favoris = useSelector(state => state.favoriReducer)
-    console.log(favoris)
+    console.log(props.element)
     const addFavori = e => {
         e.preventDefault()
         dispatch(allActions.favoriAction.addFavori(selection))
@@ -117,80 +117,63 @@ const Liste = (props) => {
             {allButtons(selection)}
         </div>
     </div>
+    const carousel = props.type==="all" ? <Carousel responsive={responsive} itemClass="carousel-item">
+        {props.elements.map((element, index) => (
+            <>
+                <img src={element.image}
+                     className="box-image" alt={element.id}
+                     onMouseOver={e => mouseOver(e, element, index)}
+                />
+            </>
+        ))}
+    </Carousel> : ""
+    const carouselTitle = props.type==="all" ? <h2 className="rowHeader">
+        <NavLink to={props.genre.url} className="rowTitle">
+            <div className="row-header-title">{props.genre.title}</div>
+        </NavLink>
+    </h2> : ""
+    const genreContainer = props.type!=="info" ? <div className="genre-container">
+        {props.elements.map(element => (
+            <div className="genre-content" onMouseOver={() => setSelection(element)}>
+                <div className="genre-box-image">
+                    <img src={element.image}
+                         className="box-image" alt={element.id} onClick={() => navigate(element.image)}
+                    />
+                </div>
+                {allButtons(element)}
+            </div>
+        ))}
+    </div> : ""
+    const genreTitle = props.type==="genre" ? <h1 style={{marginLeft:"2%"}}>Genre {props.genre.title}</h1> : ""
+    const favoriTitle = <h1 style={{marginLeft:"2%"}}>Mes favoris</h1>
+    const favoriFoot = props.type==="favoris" ? <center><h1><i>Aucun favori</i></h1></center> : ""
+    const infoTitle = props.type==="info" ? <div className="box-image-info">
+        <img src={props.element.image}
+             className="box-image" alt={props.element.id} onClick={() => navigate(props.element.image)}
+        />
+    </div> : ""
+    const infoContainer = props.type==="info" ? <div className="info-container">
+        <div><span>Titre : </span>{props.element.title ? props.element.title  : props.element.name}</div>
+        <div><span>Description : </span>{props.element["overview"]}</div>
+        <div><span>Date de sortie : </span>{props.element["release_date"] ? props.element["release_date"] : props.element["first_air_date"]}</div>
+        <div><span>Note : </span>{props.element["vote_average"]}/10</div>
+    </div> : ""
+    const allContainer = (title, content, footer, foot=<i></i>) => <div className="allContainers listContainer">
+        {props.elements || props.element?  <>
+            {title}
+            {content}
+            {footer}
+        </> : foot}
+    </div>
     return (
         <>
-            {props.type==="all" ? (
-                <div className="allContainers listContainer">
-                    {props.elements[0] ? (
-                        <>
-                            <h2 className="rowHeader">
-                                <NavLink to={props.genre.url} className="rowTitle">
-                                    <div className="row-header-title">{props.genre.title}</div>
-                                </NavLink>
-                            </h2>
-                            <Carousel responsive={responsive} itemClass="carousel-item">
-                                {props.elements.map((element, index) => (
-                                    <>
-                                        <img src={element.image}
-                                             className="box-image" alt={element.id}
-                                             onMouseOver={e => mouseOver(e, element, index)}
-                                        />
-                                    </>
-                                ))}
-                            </Carousel>
-                            {previewModal}
-                        </>
-                    ) : (
-                        <i></i>
-                    )}
-                </div>
-            ) : props.type==="genre" ? (
-                    <div className="allContainers listContainer">
-                        <h1 style={{marginLeft:"2%"}}>Genre {props.genre.title}</h1>
-                        {props.elements[0] ? (
-                            <>
-                                <div className="genre-container">
-                                    {props.elements.map(element => (
-                                        <div className="genre-content" onMouseOver={() => setSelection(element)}>
-                                            <div className="genre-box-image">
-                                                <img src={element.image}
-                                                     className="box-image" alt={element.id} onClick={() => navigate(element.url)}
-                                                />
-                                            </div>
-                                            {allButtons(element)}
-                                        </div>
-                                    ))}
-                                </div>
-                                {previewModal}
-                            </>
-                        ) : (
-                            <i></i>
-                        )}
-                    </div>
-            ) : (
-                <div className="allContainers listContainer">
-                    {props.elements[0] ? (
-                        <>
-                            <h1 style={{marginLeft:"2%"}}>Mes favoris</h1>
-                            <div className="genre-container">
-                                {props.elements.map(element => (
-                                    <div className="genre-content" onMouseOver={() => setSelection(element)}>
-                                        <div className="genre-box-image">
-                                            <img src={element.image}
-                                                 className="box-image" alt={element.id} onClick={() => navigate(element.url)}
-                                            />
-                                        </div>
-                                        {allButtons(element)}
-                                    </div>
-                                ))}
-                            </div>
-                            {previewModal}
-                        </>
-                    ) : (
-                        <center><h1><i>Aucun favori</i></h1></center>
-                    )}
-                </div>
-            )}
+            {
+                props.type==="all" ? allContainer(carouselTitle, carousel, previewModal)
+                    : props.type==="genre" ? allContainer(genreTitle, genreContainer, previewModal)
+                        : props.type==="favoris" ? allContainer(favoriTitle, genreContainer,previewModal, favoriFoot)
+                            : props.type==="info" ? allContainer(infoTitle, infoContainer)
+                                : <></>
+            }
         </>
     )
 }

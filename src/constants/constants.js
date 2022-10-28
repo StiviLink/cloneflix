@@ -10,7 +10,7 @@ export class Constants {
                 image : `https://image.tmdb.org/t/p/w500/${x['poster_path']}`,
                 parution : x['release_date'],
                 backdrop : `https://image.tmdb.org/t/p/w500/${x['backdrop_path']}`,
-                url : `/movie/${x.id}`,
+                url : `/info/movie/${x.id}`,
                 id : x.id
             }))
             listes.push({
@@ -31,7 +31,7 @@ export class Constants {
                 image : `https://image.tmdb.org/t/p/w500/${x['poster_path']}`,
                 parution : x['release_date'],
                 backdrop : `https://image.tmdb.org/t/p/w500/${x['backdrop_path']}`,
-                url : `/série/${x.id}`,
+                url : `/info/série/${x.id}`,
                 id : x.id
             }))
             listes.push({
@@ -50,7 +50,6 @@ export class Constants {
                 allGenres.push(x)
         })
         const listes = []
-        console.log(allGenres)
         allGenres.map(genre => {
             const movies = listMovies.find(x => x.genre.id===genre.id).elements
             const tvs = listTvs.find(x => x.genre.id===genre.id).elements
@@ -59,8 +58,6 @@ export class Constants {
                 genre : {...genre, url : `/genre/${genre.id}`, title : genre.name}
             })
         })
-
-        console.log(listes)
         return listes
     }
 }

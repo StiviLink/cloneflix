@@ -2,7 +2,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #141414;
-  color: #fff;
+  color: #e5e5e5;
   cursor: default;
   font-family: Netflix Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 10px;
@@ -90,7 +90,7 @@ img{
 }
 
 a {
-  color: #fff;
+  color: #e5e5e5;
   cursor: pointer;
   text-decoration: none;
   background-color: transparent;
